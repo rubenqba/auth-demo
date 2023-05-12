@@ -8,7 +8,7 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <>
       <Header />
-      <main>{children}</main>
+      <div className="container flex flex-grow h-full bg-white">{children}</div>
     </>
   );
 };

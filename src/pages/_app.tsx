@@ -6,8 +6,8 @@ import Layout from './layout';
 export default function App({ Component, pageProps: {session, pageProps} }: AppProps) {
   return (
     <SessionProvider session={session}>
-      <Layout >
-        <Component {...pageProps} />
+      <Layout>
+        <Component {...pageProps} className="container mx-auto h-screen" />
       </Layout>
     </SessionProvider>
   );

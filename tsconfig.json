@@ -16,9 +16,12 @@
     "incremental": true,
     "paths": {
       "@styles/*": ["./src/styles/*"],
+      "@model/*": ["./src/models/*"],
       "@components/*": ["./src/components/*"],
       "@api/*": ["./src/pages/api/*"]
-    }
+    },
+    "typeRoots": ["./src/types", "./node_modules/@types"],
+    "sourceMap": true
   },
   "include": ["next-env.d.ts", "./src/types/*.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]

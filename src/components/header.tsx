@@ -40,15 +40,15 @@ const Header = () => {
               <Image
                 className="peer w-10 h-10 rounded ring-2"
                 src={data.user?.image}
-                alt={data.user?.name}
+                alt={data.user?.name || 'avatar'}
                 width={10}
                 height={10}
               />
               <div className="hidden peer-hover:flex hover:flex absolute top-10 right-10 mt-0 w-[200px] flex-col bg-white drop-shadow-lg">
-                <Link className="px-5 py-3 hover:bg-gray-200" href="#">
+                <Link className="px-5 py-3 hover:bg-gray-200" href="/protected/aboutme">
                   About Me
                 </Link>
-                <Link className="px-5 py-3 hover:bg-gray-200" href="#">
+                <Link className="px-5 py-3 hover:bg-gray-200" href="/protected/data">
                  API Data
                 </Link>
                 <Link onClick={logout} className="px-5 py-3 hover:bg-gray-200" href="#">
