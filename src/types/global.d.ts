@@ -1,3 +1,6 @@
+import { PageRequest } from "@model/common";
+import { DefaultUser } from "next-auth";
+
 export {};
 
 declare global {
@@ -24,5 +27,6 @@ declare global {
 
   export type UserSettings = Camelize<UserAuthSettings>;
 
-  export type UserListResponse = PageRequest || HttpError;
+  export type UserListResponse = PageRequest | HttpError;
+
 }

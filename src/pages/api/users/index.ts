@@ -1,36 +1,31 @@
-import { authOptions } from "@api/auth/[...nextauth]";
-import { NextApiRequest, NextApiResponse } from "next";
-import { getServerSession } from "next-auth";
-import createError from "http-errors";
-import { getToken } from "next-auth/jwt";
+import createHttpError from "http-errors";
+import { NextApiHandler } from "next";
+import { apiHandler } from "@utils/api";
+import { JsonPlaceholderService } from "@service/placeholder-service";
+import { UserData } from "@model/users";
+import { PageRequest } from "@model/common";
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<UserListResponse>
-) {
-  const session = await getServerSession(req, res, authOptions);
-  const token = await getToken({req});
+export type UserDataPage = UserData[];
+export type UserDataResponse = {
+  data: UserDataPage | UserData;
+};
 
-  if (req.method === "GET") {
-    console.log("hasta aqui llego!!");
-    if (token) {
-      console.log("hay session");
-      const { searchParams } = new URL(`${process.env.NEXTAUTH_URL}${req.url}`);
-      const page = parseInt(searchParams.get("page") || "0");
-      const size = parseInt(searchParams.get("size") || "10");
-      const filter = searchParams.get("filter") || "";
-      const sort = searchParams.get("sort") || "";
-
-      res.status(200).json({
-        page,
-        size,
-        filter,
-        sort,
-      });
-    } else {
-      res.status(401).json(createError(401, "no session detected"));
-    }
+const getUsers: NextApiHandler<UserDataResponse> = async (req, res) => {
+  const { id } = req.query;
+  const service = new JsonPlaceholderService();
+  if (id) {
+    // find and return article with given id
+    const user = await service.findUser(parseInt(id as string));
+    if (!user)
+      throw new createHttpError.NotFound(`User with id ${id} not found!`);
+    res.status(200).json({ data: user });
   } else {
-    res.status(405).send();
+    const pageRequest: PageRequest = { page: 0, size: 10 };
+    const page = await service.getUserPage(pageRequest);
+    res.status(200).json({ data: page });
   }
-}
+};
+
+export default apiHandler({
+  GET: getUsers,
+});

@@ -7,7 +7,7 @@ export default function App({ Component, pageProps: {session, pageProps} }: AppP
   return (
     <SessionProvider session={session}>
       <Layout>
-        <Component {...pageProps} className="container mx-auto h-screen" />
+        <Component {...pageProps} className="container h-screen w-screen" />
       </Layout>
     </SessionProvider>
   );

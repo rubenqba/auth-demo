@@ -1,3 +1,4 @@
+import HeaderAlterno from "@components/header-alterno";
 import Header from "../components/header";
 
 type LayoutProps = {
@@ -6,10 +7,12 @@ type LayoutProps = {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <>
-      <Header />
-      <div className="container flex flex-grow h-full bg-white">{children}</div>
-    </>
+    <div className="flex flex-col min-h-screen">
+      <nav className="bg-gray-800">
+        <HeaderAlterno />
+      </nav>
+      <main className="flex-1">{children}</main>
+    </div>
   );
 };
 

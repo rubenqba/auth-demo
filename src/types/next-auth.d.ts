@@ -1,5 +1,5 @@
-import { DefaultUser } from 'next-auth';
-import { DefaultJWT } from 'next-auth/jwt'
+import { DefaultUser } from "next-auth";
+import { DefaultJWT } from "next-auth/jwt";
 
 declare module "next-auth" {
   interface Profile {
@@ -9,19 +9,13 @@ declare module "next-auth" {
 
   interface User {
     email: string;
-    roles: Role[],
-    partner: string
+    roles: Role[];
+    partner: string;
   }
 
   interface Session {
     accessToken: string;
-    user: {
-      id: string;
-      name: string;
-      email: string;
-      roles: Role[];
-      partner: string;
-    } & DefaultUser['user']
+    user: AuthenticatedUser;
   }
 }
 

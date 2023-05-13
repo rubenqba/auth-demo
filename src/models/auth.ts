@@ -1,6 +1,8 @@
+import { DefaultSession } from "next-auth";
+
 export enum Role {
-  CORPORATE_BUYER,
-  CORPORATE_STAFF,
+  CORPORATE_BUYER = "CORPORATE_BUYER",
+  CORPORATE_STAFF = "CORPORATE_STAFF",
 }
 
 export namespace RoleUtils {
@@ -12,3 +14,11 @@ export namespace RoleUtils {
     return Role[name as keyof typeof Role];
   }
 }
+
+export type AuthenticatedUser = {
+  id: string;
+  name: string;
+  email: string;
+  roles: Role[];
+  partner: string;
+} & DefaultSession["user"];

@@ -18,7 +18,10 @@
       "@styles/*": ["./src/styles/*"],
       "@model/*": ["./src/models/*"],
       "@components/*": ["./src/components/*"],
-      "@api/*": ["./src/pages/api/*"]
+      "@api/*": ["./src/pages/api/*"],
+      "@service/*": ["./src/services/*"],
+      "@types/*": ["./src/types"],
+      "@utils/*": ["./src/utils/*"]
     },
     "typeRoots": ["./src/types", "./node_modules/@types"],
     "sourceMap": true
